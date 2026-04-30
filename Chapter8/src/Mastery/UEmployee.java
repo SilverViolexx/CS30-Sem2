@@ -48,5 +48,4 @@ public class UEmployee {
 		return("Empolyee Name: " + fName + " " + lName + "\n"
 				+ "Salary Amount: " + money.format(salary));
 	}
-	
 }

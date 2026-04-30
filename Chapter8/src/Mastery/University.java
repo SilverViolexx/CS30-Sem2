@@ -14,9 +14,7 @@ Course: Computer Programming 30
 */
 package Mastery;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class University {
@@ -30,7 +28,7 @@ public class University {
 		
 		//Continues looping code until "e" is entered
 		do {
-			list.add(assignE());
+			list.add(assignE(input));
 			
 			System.out.print("\n" + prompt);
 			action = input.next();
@@ -52,12 +50,11 @@ public class University {
 		} while (!action.equalsIgnoreCase("e"));			
 	}
 	
-	public static UEmployee assignE() {
+	public static UEmployee assignE(Scanner input) {
 		//Initialize variables
 		String fName, lName, title, dep, choice;
 		double salary;	
 		String prompt = "Is The Employee A (S)taff or (F)aculty: ";
-		Scanner input = new Scanner(System.in);
 		
 		//Prompt user to input data
 		System.out.print("Employee First Name: ");

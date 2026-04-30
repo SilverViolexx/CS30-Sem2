@@ -58,5 +58,4 @@ public class Truck extends Vehicle{
 	String vehicleColour() {
 		return(colour);
 	}
-	
 }

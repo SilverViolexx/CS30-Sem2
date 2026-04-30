@@ -1,5 +1,5 @@
 /*
-Program: TestVehicle.java          Last Date of this Revision: April 23, 2026
+Program: TestVehicle.java          Last Date of this Revision: April 27, 2026
 
 Create PersonalAcct and BusinessAcct classes that inherit the Account class presented in Chapter 8. 
 A personal account requires a minimum balance of $100. If the balance falls below this amount, then 
@@ -33,7 +33,7 @@ public class TestAccount {
 		
 		System.out.print("Banking App" + "\n");
 		
-		//Loops until 6 is entered
+		//Loops until 5 is entered
 		do {
 			System.out.print("\n"
 					+ "1. Create New Account" + "\n"
@@ -82,7 +82,7 @@ public class TestAccount {
 								break;
 							}
 						}
-					
+						//Creates an account
 						if(!exist) {
 							BAccList.add((BusinessAcct) obj);
 							System.out.print("\n" + "Business Account Created!" + "\n"
@@ -91,34 +91,37 @@ public class TestAccount {
 						}
 					}
 				}
-				//Object returned null
-				else {
-					System.out.print("Account Could Not Be Created. Please Try Again." + "\n");
-				}
-				
 			}
+			
+			//Transactions
 			else if (actionAcc == 2) {
+				//Prompts account ID and account type
 				System.out.print("Account ID: ");
 				acctID = input.nextLine();
 				
 				System.out.print("(B)usiness OR (P)ersonal Account: ");
 				accType = input.nextLine();
 				
-				
-				if (accType.equalsIgnoreCase("b")) {			
+				//Transactions for business accounts
+				if (accType.equalsIgnoreCase("b")) {	
+					//No business accounts created
 					if (BAccList.isEmpty()) {
 						System.out.print("No Business Accounts Exist. Please Create An Account First." + "\n");
 					} 
 					else {
+						//Uses method to check if account ID matches an existing account
 						BusinessAcct account = findBAcct(BAccList, acctID);
-							
+						
+						//Account exists
 						if (account != null) {
+							//Display possible actions
 							System.out.print("1. Withdraw" + "\n"
 								+ "2. Deposit" +"\n"
 								+ "Input Choice(1-2): ");
 							transaction = input.nextInt();
 							input.nextLine();
 					
+							//Withdraw from account
 							if(transaction == 1) {
 								System.out.print("Enter Withdrawal Amount($): ");
 								withdraw = input.nextDouble();
@@ -128,149 +131,139 @@ public class TestAccount {
 								System.out.println(account.BusinessMinFee());
 								
 							}
+							//Deposit in account
 							else if(transaction == 2) {
 								System.out.print("Enter Deposit Amount($): ");
 								deposit = input.nextDouble();
 								input.nextLine();
 								account.deposit(deposit);
+								
 								System.out.print("New Balance: " + money.format(account.getBalance()) + "\n");
-							}			
+							}	
+							//Invalid input
 							else {
 								System.out.print(notOption + "\n");
 							}						
 						}
+						//Account not in arraylist
 						else {
 							System.out.print(accNotFound + "\n");
 						}
 					}
 					
 				}			
-				
-				else if (accType.equalsIgnoreCase("p")) {			
+				//Transactions for personal accounts
+				else if (accType.equalsIgnoreCase("p")) {		
+					//No personal accounts created
 					if (PAccList.isEmpty()) {
 						System.out.print("No Personal Accounts Exist. Please Create An Account First." + "\n");
 					} 
-					else {					
+					else {			
+						//Uses method to check if account ID matches an existing account
 						PersonalAcct account = findPAcct(PAccList, acctID);
 						
+						//Account exists
 						if (account != null) {
-							
+							//Display possible actions
 							System.out.print("1. Withdraw" + "\n"
 								+ "2. Deposit" +"\n"
 								+ "Input Choice(1-2): ");
 							transaction = input.nextInt();
 							input.nextLine();
 					
+							//Withdraw from account
 							if(transaction == 1) {
 								System.out.print("Enter Withdrawal Amount($): ");
 								withdraw = input.nextDouble();
 								input.nextLine();
 								account.withdrawal(withdraw);
+								
 								System.out.println(account.PersonalMinFee());
 							}
+							//Deposit in account
 							else if(transaction == 2) {
 								System.out.print("Enter Deposit Amount($): ");
 								deposit = input.nextDouble();
 								input.nextLine();
 								account.deposit(deposit);
+								
 								System.out.print("New Balance: " + money.format(account.getBalance()) + "\n");
 							}			
+							//Invalid input
 							else {
 								System.out.print(notOption + "\n");	
 							}
 						}
-					
+						//Account not found in arraylist
 						else {
 							System.out.print(accNotFound + "\n");
 						}
 					}			
 				}		
+				//Invalid input
 				else {
 					System.out.print(notOption + "\n");
 				}
 			}
 
+			//View account details
 			else if (actionAcc == 3) {
+				//Prompts account ID and account type
 				System.out.print("Account ID: ");
 				acctID = input.nextLine();
 				
 				System.out.print("(B)usiness OR (P)ersonal Account: ");
 				accType = input.nextLine();
 				
-				if (accType.equalsIgnoreCase("b")) {					
+				//View details for business accounts
+				if (accType.equalsIgnoreCase("b")) {		
+					//Uses method to check if account ID matches an existing account
 					BusinessAcct account = findBAcct(BAccList, acctID);
 					
+					//Account exists
 					if (account != null) {
 						System.out.print(account.toStringBA());
 					}
-					
+					//Account doesn't exists
 					else {
 						System.out.print(accNotFound + "\n");
 					}
 				}
+				//View details for personal accounts
 				else if (accType.equalsIgnoreCase("p")) {	
+					//Uses method to check if account ID matches an existing account
 					PersonalAcct account = findPAcct(PAccList, acctID);
 					
+					//Account exists
 					if (account != null) {
 						System.out.print(account.toStringPA());
 					}
+					//Account doesn't exists
 					else {
 						System.out.print(accNotFound + "\n");
 					}
 				}
-				
+				//Invalid input
 				else {
 					System.out.print(notOption + "\n");
 				}
 			} 
-			/*
+			
+			//Change Address
 			else if (actionAcc == 4) {
+				//Prompts account ID and account type
 				System.out.print("Account ID: ");
 				acctID = input.nextLine();
 				
 				System.out.print("(B)usiness OR (P)ersonal Account: ");
 				accType = input.nextLine();
 				
+				//Change address for business accounts
 				if (accType.equalsIgnoreCase("b")) {	
-					if (BAccList.isEmpty()) {
-						System.out.print("No Business Accounts Exist. Please Create An Account First." + "\n");
-					} 
-					else {
-						BusinessAcct account = findBAcct(BAccList, acctID);
-						
-						if (account != null) {
-							System.out.print("\n" + account.BusinessMinFee());
-						}		
-						else {
-							System.out.print(accNotFound + "\n");
-						}
-					}
-				}
-				else if (accType.equalsIgnoreCase("p")) {	
-					PersonalAcct account = findPAcct(PAccList, acctID);
-					
-					if (account != null) {
-						System.out.print("\n" + account.PersonalMinFee());
-					}
-					else {
-						System.out.print(accNotFound + "\n");
-					}
-				}
-				else {
-					System.out.print(notOption + "\n");
-				}
-			}
-			*/
-			else if (actionAcc == 4) {
-				System.out.print("Account ID: ");
-				acctID = input.nextLine();
-				
-				System.out.print("(B)usiness OR (P)ersonal Account: ");
-				accType = input.nextLine();
-				
-				if (accType.equalsIgnoreCase("b")) {	
+					//Uses method to check if account ID matches an existing account
 					BusinessAcct account = findBAcct(BAccList, acctID);
 					
+					//Account exists
 					if (account != null) {
 							System.out.print("\n" + "Enter Address Information" + "\n"
 								+ "Street: ");
@@ -291,36 +284,46 @@ public class TestAccount {
 						System.out.print(accNotFound + "\n");
 					}
 				}
+				//Change address for personal accounts
 				else if (accType.equalsIgnoreCase("p")) {	
+					//Uses method to check if account ID matches an existing account
 					PersonalAcct account = findPAcct(PAccList, acctID);
 					
+					//Account exists
 					if (account != null) {
-							System.out.print("\n" + "Enter Address Information" + "\n"
-								+ "Street: ");
-							street = input.nextLine();
+						//Prompts user for information
+						System.out.print("\n" + "Enter Address Information" + "\n"
+							+ "Street: ");
+						street = input.nextLine();
+			
+						System.out.print("City: ");
+						city = input.nextLine();
+			
+						System.out.print("Province: ");
+						province = input.nextLine();
 				
-							System.out.print("City: ");
-							city = input.nextLine();
-				
-							System.out.print("Province: ");
-							province = input.nextLine();
-				
-							System.out.print("Postal Code: ");
-							postalCode = input.nextLine();
+						System.out.print("Postal Code: ");
+						postalCode = input.nextLine();
 							
-							account.changeAddress(street, city, province, postalCode);
+						//Use method to change address using info inputted
+						account.changeAddress(street, city, province, postalCode);
 					}
+					//Account not found
 					else {
 						System.out.print(accNotFound + "\n");
 					}
 				}
+				//Invalid input
 				else { 
 					System.out.print(notOption + "\n");
 				}
 			}
+			
+			//End program
 			else if (actionAcc == 5) {
 				continue;
 			}
+			//Invalid input
 			else {
 				System.out.print(notOption + "\n");
 			}
@@ -328,10 +331,13 @@ public class TestAccount {
 		} while (actionAcc != 5);
 	}
 	
+	//Method that returns an object
 	public static Account bank(Scanner input) {
+		//Initialize variables
 		String fName, lName, street, city, province, postalCode, type;
 		double balance;
 		
+		//Prompt user for information to create object
 		System.out.print("\n" + "First Name: ");
 		fName = input.nextLine();
 		
@@ -358,18 +364,31 @@ public class TestAccount {
 		System.out.print("(B)usiness OR (P)ersonal Account: ");
 		type = input.nextLine();
 		
+		//Keeps prompting user until valid value is entered
+		while(!type.equalsIgnoreCase("p") && !type.equalsIgnoreCase("b")) {
+			System.out.println("Invalid option.");
+
+			System.out.print("(B)usiness OR (P)ersonal Account: ");
+			type = input.nextLine();
+		}
+		
+		//Returns personal account
 		if (type.equalsIgnoreCase("p")) {
 			return (new PersonalAcct(balance, fName, lName, street, city, province, postalCode));
 		}
+		//Returns business account
 		else if (type.equalsIgnoreCase("b")) {
 			return (new BusinessAcct(balance, fName, lName, street, city, province, postalCode));
 		}
 		return null;
 	}
-	
+		
+	//Method checks if the personal account exists
 	public static PersonalAcct findPAcct(ArrayList<PersonalAcct> list, String id) {
+		//Checks each object in an arraylist
 		for (int i = 0; i < list.size(); i++) {
 			PersonalAcct account = list.get(i);
+			//Returns account if it exists in an arraylist
 			if (id.equalsIgnoreCase(account.getID())) {
 				return account;
 			}
@@ -377,9 +396,12 @@ public class TestAccount {
 		return null;
 	}
 	
+	//Method checks if the business account exists
 	public static BusinessAcct findBAcct(ArrayList<BusinessAcct> list, String id) {
+		//Checks each object in an arraylist
 		for (int i = 0; i < list.size(); i++) {
 			BusinessAcct account = list.get(i);
+			//Returns account if it exists in an arraylist
 			if (id.equalsIgnoreCase(account.getID())) {
 				return account;
 			}
@@ -583,7 +605,3 @@ Account ID: hello
 ------------------------------------------
 Input Choice(1-5): 5
  */
-
-
-
-

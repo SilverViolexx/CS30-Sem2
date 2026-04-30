@@ -30,5 +30,4 @@ public class Staff extends UEmployee{
 		return(super.toString() + "\n"
 				+ "Job Title: " + title + "\n");
 	}
-	
 }

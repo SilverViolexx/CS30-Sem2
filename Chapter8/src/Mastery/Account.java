@@ -25,7 +25,6 @@ abstract class Account {
 		province = prov;
 		postalCode = postal;
 	}
-	
 
 	/**
 	 * constructor

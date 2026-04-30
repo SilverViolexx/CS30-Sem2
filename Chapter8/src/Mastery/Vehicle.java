@@ -63,6 +63,4 @@ abstract class Vehicle {
 	abstract String vehicleModel();
 	
 	abstract String vehicleColour();
-	
-	
 }

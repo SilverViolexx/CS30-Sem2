@@ -56,6 +56,4 @@ public class Minivan extends Vehicle{
 	String vehicleColour() {
 		return(colour);
 	}
-		
-	
 }

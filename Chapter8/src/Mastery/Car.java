@@ -46,7 +46,6 @@ public class Car extends Vehicle{
 				+ super.toString() + "\n"
 				+ "Transmission Type: " + transmission);
 	}
-
 	
 	//Abstract method
 	String vehicleType() {
@@ -58,7 +57,4 @@ public class Car extends Vehicle{
 	String vehicleColour() {
 		return(colour);
 	}
-	
-	
-	
 }

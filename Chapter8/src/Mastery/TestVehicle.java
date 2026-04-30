@@ -49,7 +49,7 @@ public class TestVehicle {
 		
 			//Checks type of vehicle & adds object to according list
 			if (action.equals("a")) {
-				Vehicle obj = assignV();
+				Vehicle obj = assignV(input);
 
 				if (obj.vehicleType().equals("Car")) {
 					carList.add(obj);
@@ -115,13 +115,12 @@ public class TestVehicle {
 	
 	
 	//Method that returns an object
-	public static Vehicle assignV() {	
+	public static Vehicle assignV(Scanner input) {	
 		//Initialize variables
 		String type, make, colour, transmission, door;
 		int seatNum;
 		double cargoV, ctyEcon, hwyEcon, towCap;
 		String[] typeList = {"c", "t", "m"};
-		Scanner input = new Scanner(System.in);	
 		String typePrompt = "Type Of Vehicle: (C)ar || (T)ruck || (M)inivan";
 			
 		//Prompt user to input information

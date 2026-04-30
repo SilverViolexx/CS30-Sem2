@@ -61,5 +61,4 @@ public class Customer {
 	 			+ "Adress: " + street + ", " + city + ", " + province + ", "
 	 			+ postalCode + "\n");
 	}
-
 }

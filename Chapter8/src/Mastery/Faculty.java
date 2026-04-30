@@ -25,5 +25,4 @@ public class Faculty extends UEmployee {
 		return (super.toString() + "\n" 
 				+ "Department: " + department + "\n");
 	}
-	
 }
