@@ -4,5 +4,5 @@
 /**
  * 
  */
-module tester1 {
+module Chapter8 {
 }
